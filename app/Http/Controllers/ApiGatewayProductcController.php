@@ -12,8 +12,9 @@ class ApiGatewayProductcController extends Controller
     public function products(Request $request)
     {
         try {
-            $headers = $request->headers->all();
-            $response = Http::withHeaders($headers)
+            $token = $request->header('Authorization');
+            $token = str_replace("Bearer ", '', $token);
+            $response = Http::withToken($token)
                 ->retry(3, 500)
                 ->get(env('PRODUCTS_SERVICE_URL') . '/api/v1/products');
             return $response->json();

@@ -95,8 +95,11 @@ class ApiGatewayProductcController extends Controller
 
     public function getLowProducts(Request $request)
     { {
-            try {
-                $headers = $request->headers->all();
+        try {
+            $token = $request->header('Authorization');
+            $headers = [
+            'Authorization' => 'Bearer ' . $token,
+            ];
                 $response = Http::withHeaders($headers)
                     ->retry(3, 500)
                     ->get(env('PRODUCTS_SERVICE_URL') . '/api/v1/products/low');

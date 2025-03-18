@@ -33,7 +33,7 @@ class ApiGatewayProductcController extends Controller
 
             $response = Http::withHeaders($headers)
                 ->timeout(600)
-                ->post(env('PRODUCTS_SERVICE_URL') . '/api/v1/products', $request->all());
+                ->post(env('PRODUCTS_SERVICE_URL') . '/api/v1/products/store', $request->all());
             return $response->json();
         } catch (Exception $e) {
             return response()->json(['error' => $e->getMessage()], $e->getCode());

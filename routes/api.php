@@ -35,7 +35,7 @@ Route::prefix('v1')->middleware(['api', 'jwt.verify'])->group(function () {
     Route::prefix('orders')->group(function () {
         //rutas de ordenes
         Route::get('/', [ApiGatewayOrderController::class, 'Order']);
-        Route::post('/', [ApiGatewayOrderController::class, 'storeOrder']);
+        Route::post('/store', [ApiGatewayOrderController::class, 'storeOrder']);
         Route::get('/{id}', [ApiGatewayOrderController::class, 'showOrder']);
         Route::put('/{id}', [ApiGatewayOrderController::class, 'updateOrder']);
         Route::delete('/{id}', [ApiGatewayOrderController::class, 'deleteOrder']);

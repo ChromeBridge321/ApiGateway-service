@@ -26,9 +26,10 @@ class ApiGatewayProductcController extends Controller
     public function storeProduct(Request $request)
     {
         try {
+            $token = $request->header('Authorization');
             $headers = [
-                'Authorization' => $request->header('Authorization'),
-                'Content-Type' => 'application/json'
+            'Authorization' => 'Bearer ' . $token,
+            'Content-Type' => 'application /json',
             ];
 
 
@@ -62,9 +63,9 @@ class ApiGatewayProductcController extends Controller
     public function updateProduct(string $id, Request $request)
     {
         try {
+            $token = $request->header('Authorization');
             $headers = [
-                'Authorization' => $request->header('Authorization'),
-                'Content-Type' => 'application/json'
+            'Authorization' => 'Bearer ' . $token,
             ];
             $response = Http::withHeaders($headers)
                 ->timeout(600)
@@ -78,8 +79,9 @@ class ApiGatewayProductcController extends Controller
     public function deleteProduct(string $id, Request $request)
     {
         try {
+            $token = $request->header('Authorization');
             $headers = [
-                'Authorization' => $request->header('Authorization'),
+            'Authorization' => 'Bearer ' . $token,
             ];
             $response = Http::withHeaders($headers)
                 ->timeout(600)

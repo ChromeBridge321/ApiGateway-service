@@ -28,9 +28,10 @@ class ApiGatewayOrderController extends Controller
     public function storeOrder(Request $request)
     {
         try {
+            $token = $request->header('Authorization');
             $headers = [
-                'Authorization' => $request->header('Authorization'),
-                'Content-Type' => 'application/json'
+            'Authorization' => 'Bearer ' . $token,
+            'Content-Type' => 'application /json',
             ];
 
 
@@ -47,8 +48,9 @@ class ApiGatewayOrderController extends Controller
     {
 
         try {
+            $token = $request->header('Authorization');
             $headers = [
-                'Authorization' => $request->header('Authorization')
+            'Authorization' => 'Bearer ' . $token,
             ];
 
 
@@ -64,9 +66,9 @@ class ApiGatewayOrderController extends Controller
     public function updateOrder(string $id, Request $request)
     {
         try {
+            $token = $request->header('Authorization');
             $headers = [
-                'Authorization' => $request->header('Authorization'),
-                'Content-Type' => 'application/json'
+            'Authorization' => 'Bearer ' . $token,
             ];
             $response = Http::withHeaders($headers)
                 ->timeout(600)
@@ -80,8 +82,9 @@ class ApiGatewayOrderController extends Controller
     public function deleteOrder(string $id, Request $request)
     {
         try {
+            $token = $request->header('Authorization');
             $headers = [
-                'Authorization' => $request->header('Authorization'),
+            'Authorization' => 'Bearer ' . $token,
             ];
             $response = Http::withHeaders($headers)
                 ->timeout(600)

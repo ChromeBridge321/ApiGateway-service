@@ -14,8 +14,9 @@ class ApiGatewayOrderController extends Controller
 {
     public function Order(Request $request){
         try {
-            $headers = $request->headers->all();
-            $response = Http::withHeaders($headers)
+            $token = $request->header('Authorization');
+            $token = str_replace("Bearer ", '', $token);
+            $response = Http::withToken($token)
                 ->retry(3, 500)
                 ->get(env('ORDER_SERVICE_URL') . '/api/v1/orders');
             return $response->json();
@@ -35,7 +36,7 @@ class ApiGatewayOrderController extends Controller
 
             $response = Http::withHeaders($headers)
                 ->timeout(600)
-                ->post(env('ORDER_SERVICE_URL') . '/api/v1/orders', $request->all());
+                ->post(env('ORDER_SERVICE_URL') . '/api/v1/orders/store', $request->all());
             return $response->json();
         } catch (Exception $e) {
             return response()->json(['error' => $e->getMessage()], $e->getCode());

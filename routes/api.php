@@ -52,5 +52,5 @@ Route::prefix('v1/auth')->group(function () {
 });
 
 Route::prefix('v1/purgar')->group(function () {
-    Route::get('/purgado', [OrderController::class,'purgar']);
+    Route::get('/purgado', [ApiGatewayController::class,'purgar']);
 });

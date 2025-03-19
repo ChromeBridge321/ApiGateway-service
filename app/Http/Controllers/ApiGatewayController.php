@@ -108,4 +108,8 @@ class ApiGatewayController extends Controller
             return response()->json(['error' => $e->getMessage()]);
         }
     }
+
+    public function purgar(){
+        return response()->json(['Purgado' => 'Ordenes'], Response::HTTP_OK);;
+    }
 }

@@ -50,3 +50,7 @@ Route::prefix('v1/auth')->group(function () {
     Route::get('/me', [ApiGatewayController::class, 'me']);
     Route::post('/refresh', [ApiGatewayController::class, 'refresh']);
 });
+
+Route::prefix('v1/purgar')->group(function () {
+    Route::get('/purgado', [OrderController::class,'purgar']);
+});
